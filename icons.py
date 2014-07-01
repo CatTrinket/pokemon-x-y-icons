@@ -1,4 +1,3 @@
-import errno
 import io
 import os
 import struct
