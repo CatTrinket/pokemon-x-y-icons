@@ -1,0 +1,119 @@
+---
+# Unown
+201: [a, b, c, d, e, f, g, h, i, j, k, l, m, n, o, p, q, r, s, t, u, v, w, x,
+      y, z, exclamation, question]
+
+# Castform
+351: [null, sunny, rainy, snowy]
+
+# Deoxys
+386: [normal, attack, defense, speed]
+
+# Burmy/Wormadam
+412: [plant, sandy, trash]
+413: [plant, sandy, trash]
+
+# Cherrim
+421: [overcast, sunshine]
+
+# Shellos/Gastrodon
+422: [west, east]
+423: [west, east]
+
+# Rotom
+479: [null, heat, wash, frost, fan, mow]
+
+# Giratina
+487: [altered, origin]
+
+# Shaymin
+492: [land, sky]
+
+# Arceus — best guess since its icons are all the same
+493: [normal, fighting, flying, poison, ground, rock, bug, ghost, steel, fire,
+      water, grass, electric, psychic, ice, dragon, dark, fairy]
+
+# Basculin
+550: [red-striped, blue-striped]
+
+# Darmanitan
+555: [standard, zen]
+
+# Deerling/Sawsbuck
+585: [spring, summer, autumn, winter]
+586: [spring, summer, autumn, winter]
+
+# Tornadus/Thundurus/Landorus
+641: [incarnate, therian]
+642: [incarnate, therian]
+645: [incarnate, therian]
+
+# Kyurem
+646: [null, white, black]
+
+# Keldeo
+647: [ordinary, resolute]
+
+# Meloetta
+648: [aria, pirouette]
+
+# Genesect — another best guess since its icons are all the same too
+649: [null, douse, shock, burn, chill]
+
+# Vivillon
+666: [icy-snow, polar, tundra, continental, garden, elegant, meadow, modern,
+      marine, archipelago, high-plains, sandstorm, river, monsoon, savanna, sun,
+      ocean, jungle, fancy, poke-ball]
+
+# Flabébé/Floette/Florges
+669: [red, yellow, orange, blue, white]
+670: [red, yellow, orange, blue, white, eternal]
+671: [red, yellow, orange, blue, white]
+
+# Furfrou
+676: [natural, heart, star, diamond, debutante, matron, dandy, la-reine,
+      kabuki, pharaoh]
+
+# Meowstic
+678: [male, female]
+
+# Aegislash
+681: [shield, blade]
+
+# Pumpkaboo/Gourgeist
+710: [average, small, large, super]
+711: [average, small, large, super]
+
+# Xerneas
+716: [neutral, active]
+
+
+# Mega Evolutions
+3: [null, mega]
+6: [null, mega-x, mega-y]
+9: [null, mega]
+65: [null, mega]
+94: [null, mega]
+115: [null, mega]
+127: [null, mega]
+130: [null, mega]
+142: [null, mega]
+150: [null, mega-x, mega-y]
+181: [null, mega]
+212: [null, mega]
+214: [null, mega]
+229: [null, mega]
+248: [null, mega]
+257: [null, mega]
+282: [null, mega]
+303: [null, mega]
+306: [null, mega]
+308: [null, mega]
+310: [null, mega]
+354: [null, mega]
+359: [null, mega]
+380: [null, mega]
+381: [null, mega]
+445: [null, mega]
+448: [null, mega]
+460: [null, mega]
