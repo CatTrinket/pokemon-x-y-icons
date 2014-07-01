@@ -266,15 +266,6 @@ def save_icons(icons, output_dir, pokemon, form_names):
                     right_icon.save(filename(output_dir, pokemon, form=form,
                                              right=True))
 
-def create_directory(path):
-    """Create a directory, without complaining if it already exists."""
-
-    try:
-        os.mkdir(path)
-    except OSError as error:
-        if error.errno != errno.EEXIST:
-            raise
-
 
 # Parse args
 if len(sys.argv) != 3:
@@ -284,9 +275,8 @@ if len(sys.argv) != 3:
 rom_dir, output_dir = sys.argv[1:]
 
 # Create the necessary directory structure
-create_directory(output_dir)
-create_directory(os.path.join(output_dir, 'female'))
-create_directory(os.path.join(output_dir, 'right'))
+os.makedirs(os.path.join(output_dir, 'female'), exist_ok=True)
+os.makedirs(os.path.join(output_dir, 'right'), exist_ok=True)
 
 # Parse the icons
 icon_path = os.path.join(rom_dir, 'romfs', 'a', '0', '9', '3')
