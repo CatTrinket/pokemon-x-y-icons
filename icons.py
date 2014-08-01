@@ -268,38 +268,40 @@ def save_icons(icons, output_dir, pokemon, form_names):
                                              right=True))
 
 
-# Parse args
-if len(sys.argv) != 3:
-    print('usage: icons.py rom_dir output_dir')
-    exit()
+if __name__ == '__main__':
+    # Parse args
+    if len(sys.argv) != 3:
+        print('usage: icons.py rom_dir output_dir')
+        exit()
 
-rom_dir, output_dir = sys.argv[1:]
+    rom_dir, output_dir = sys.argv[1:]
 
-# Create the necessary directory structure
-os.makedirs(os.path.join(output_dir, 'female'), exist_ok=True)
-os.makedirs(os.path.join(output_dir, 'right'), exist_ok=True)
+    # Create the necessary directory structure
+    os.makedirs(os.path.join(output_dir, 'female'), exist_ok=True)
+    os.makedirs(os.path.join(output_dir, 'right'), exist_ok=True)
 
-# Parse the icons
-icon_path = os.path.join(rom_dir, 'romfs', 'a', '0', '9', '3')
+    # Parse the icons
+    icon_path = os.path.join(rom_dir, 'romfs', 'a', '0', '9', '3')
 
-with open(icon_path, 'rb') as icon_file:
-    icons = garc.chomp(icon_file)
+    with open(icon_path, 'rb') as icon_file:
+        icons = garc.chomp(icon_file)
 
-icons = [
-    Icon(lzss3.decompress_bytes(icon), index)
-    for index, [icon] in enumerate(icons)
-]
+    icons = [
+        Icon(lzss3.decompress_bytes(icon), index)
+        for index, [icon] in enumerate(icons)
+    ]
 
-# Map icons to Pokémon and save them all
-code_bin_path = os.path.join(rom_dir, 'exefs', 'code.bin')
+    # Map icons to Pokémon and save them all
+    code_bin_path = os.path.join(rom_dir, 'exefs', 'code.bin')
 
-with open('forms.yaml') as form_list:
-    form_names = yaml.load(form_list)
+    with open('forms.yaml') as form_list:
+        form_names = yaml.load(form_list)
 
-with open(code_bin_path, 'rb') as code_bin:
-    for pokemon in range(1, 722):
-        pokemon_icons = map_icons(pokemon, icons, code_bin)
-        save_icons(pokemon_icons, output_dir, pokemon, form_names.get(pokemon))
+    with open(code_bin_path, 'rb') as code_bin:
+        for pokemon in range(1, 722):
+            pokemon_icons = map_icons(pokemon, icons, code_bin)
+            save_icons(pokemon_icons, output_dir, pokemon,
+                       form_names.get(pokemon))
 
-# Save the egg icon
-icons[-1].save(filename(output_dir, 'egg'))
+    # Save the egg icon
+    icons[-1].save(filename(output_dir, 'egg'))
