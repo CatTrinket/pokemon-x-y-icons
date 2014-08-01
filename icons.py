@@ -23,16 +23,16 @@ class Icon:
     width = 40
     height = 30
 
-    def __init__(self, data, index):
+    def __init__(self, raw_icon, index):
         """Take raw icon data and parse it into an icon."""
 
-        self.data = io.BytesIO(data)
+        self.raw_icon = io.BytesIO(raw_icon)
         self.index = index
         self.flipped = False
 
         # The first two bytes are always 0x02 0x00 and I don't know what
         # they're supposed to be
-        self.data.seek(2)
+        self.raw_icon.seek(2)
 
         self.read_palette()
         self.read_image()
@@ -49,12 +49,12 @@ class Icon:
     def read_palette(self):
         """Read the image's palette."""
 
-        (self.palette_length,) = struct.unpack('<H', self.data.read(2))
+        (self.palette_length,) = struct.unpack('<H', self.raw_icon.read(2))
         self.palette = []
 
         for n in range(self.palette_length):
             # Each palette entry is sixteen bits: RRRRRGGGGGBBBBBA
-            (palette_entry,) = struct.unpack('<H', self.data.read(2))
+            (palette_entry,) = struct.unpack('<H', self.raw_icon.read(2))
 
             self.palette.append((
                 round_channel(palette_entry >> 11 & 0x1F),  # R
@@ -72,13 +72,13 @@ class Icon:
             self.raw_pixels = []
             image_length = self.raw_width * self.raw_height // 2
 
-            for pixel_pair in self.data.read(image_length):
+            for pixel_pair in self.raw_icon.read(image_length):
                 self.raw_pixels.append(pixel_pair >> 4)
                 self.raw_pixels.append(pixel_pair & 0x0F)
         else:
             # The palette's too long to be clever, so one byte equals one pixel
             image_length = self.raw_width * self.raw_height
-            self.raw_pixels = list(self.data.read(image_length))
+            self.raw_pixels = list(self.raw_icon.read(image_length))
 
     def untile(self):
         """Unscramble pixels into plain old rows.
