@@ -145,12 +145,27 @@ class Icon:
             self.flipped = True
 
     def save(self, filename):
-        """Save the image."""
+        """Save the image.
 
+        PyPNG doesn't support sBIT chunks with a palette, but this method works
+        around that and inserts one anyway.
+        """
+
+        # Write to a temporary in-memory PNG
+        temp_png = io.BytesIO()
+        writer = png.Writer(width=self.width, height=self.height,
+                            palette=self.palette)
+        writer.write(temp_png, self.pixels)
+
+        # Read temp PNG's chunks, and insert an sBIT chunk manually
+        temp_png.seek(0)
+        reader = png.Reader(temp_png)
+        chunks = list(reader.chunks())
+        chunks.insert(1, ('sBIT', b'\x05\x05\x05'))
+
+        # Write chunks to an actual file
         with open(filename, 'wb') as png_file:
-            writer = png.Writer(width=self.width, height=self.height,
-                                palette=self.palette)
-            writer.write(png_file, self.pixels)
+            png.write_chunks(png_file, chunks)
 
 def round_channel(n):
     """Scale and round a five-bit colour channel to eight bits."""
