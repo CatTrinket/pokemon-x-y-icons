@@ -148,7 +148,7 @@ class Icon:
         """Save the image.
 
         PyPNG doesn't support sBIT chunks with a palette, but this method works
-        around that and inserts one anyway.
+        around that and adds one anyway.
         """
 
         # Write to a temporary in-memory PNG
