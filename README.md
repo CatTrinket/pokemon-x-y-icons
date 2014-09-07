@@ -1,5 +1,5 @@
 Rip the Pokémon icons (aka party sprites, box sprites, minis, ...) from
-*Pokémon X*.  Might also work for *Pokémon Y*; I don't have a dump of *Y* to
+_Pokémon X_.  Might also work for _Pokémon Y_; I don't have a dump of _Y_ to
 test it on.
 
 Requires PyPNG and PyYAML.  Also, lzss3.py is taken from [magical's nlzss
